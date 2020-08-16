@@ -61,7 +61,8 @@ public class Main {
     // Max
     System.out.println("--------------------");
 
-    // Optional<Person> max = people.stream()
+     // Optional<Person> max = people.stream()
+     //        .max(Comparator.comparing(Person::getAge))
     people.stream()
             .max(Comparator.comparing(Person::getAge))
             .ifPresent(System.out::println); // Person{name='Zelda Brown', age=120, gender=FEMALE}
@@ -71,6 +72,17 @@ public class Main {
     people.stream()
             .min(Comparator.comparing(Person::getAge))
             .ifPresent(System.out::println); // Person{name='Anna Cook', age=7, gender=FEMALE}
+
+    // Group
+    System.out.println("--------------------");
+    Map<Gender, List<Person>> groupByGender = people.stream()
+            .collect(Collectors.groupingBy(Person::getGender));
+
+    groupByGender.forEach((gender, people1) ->{
+      System.out.println(gender);
+      people1.forEach(System.out::println);
+      System.out.println();
+    });
 
   }
   private static List<Person> getPeople() {
