@@ -23,6 +23,12 @@ public class Main {
     */
 
     // Declarative approach ✅
+    List<Person> females = people.stream()
+            .filter(person -> person.getGender().equals(Gender.FEMALE))
+            .collect(Collectors.toList());
+    females.forEach(System.out::println);
+    System.out.println("--------------------");
+
   }
   private static List<Person> getPeople() {
     return List.of(
