@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,11 +24,40 @@ public class Main {
     */
 
     // Declarative approach ✅
+    // Filter
+    System.out.println("--------------------");
     List<Person> females = people.stream()
             .filter(person -> person.getGender().equals(Gender.FEMALE))
             .collect(Collectors.toList());
     females.forEach(System.out::println);
+
+    // Sort
     System.out.println("--------------------");
+    List<Person> sorted = people.stream()
+            // .sorted(Comparator.comparing(Person::getAge))
+            .sorted(Comparator.comparing(Person::getAge).reversed())
+            .collect(Collectors.toList());
+    sorted.forEach(System.out::println);
+
+    // All match
+    System.out.println("--------------------");
+    boolean allMatch = people.stream()
+            // .allMatch(person -> person.getAge() > 5); // true
+            .allMatch(person -> person.getAge() > 8);
+    System.out.println(allMatch); // false
+
+    // Any match
+    System.out.println("--------------------");
+    boolean anyMatch = people.stream()
+            .anyMatch(person -> person.getAge() > 8);
+    System.out.println(anyMatch); // true
+
+    // None match
+    System.out.println("--------------------");
+    boolean noneMatch = people.stream()
+            .noneMatch(person -> person.getName().equals("Suzuki"));
+    System.out.println(noneMatch); // true
+
 
   }
   private static List<Person> getPeople() {
