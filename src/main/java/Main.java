@@ -58,6 +58,19 @@ public class Main {
             .noneMatch(person -> person.getName().equals("Suzuki"));
     System.out.println(noneMatch); // true
 
+    // Max
+    System.out.println("--------------------");
+
+    // Optional<Person> max = people.stream()
+    people.stream()
+            .max(Comparator.comparing(Person::getAge))
+            .ifPresent(System.out::println); // Person{name='Zelda Brown', age=120, gender=FEMALE}
+
+    // Min
+    System.out.println("--------------------");
+    people.stream()
+            .min(Comparator.comparing(Person::getAge))
+            .ifPresent(System.out::println); // Person{name='Anna Cook', age=7, gender=FEMALE}
 
   }
   private static List<Person> getPeople() {
