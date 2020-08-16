@@ -84,6 +84,14 @@ public class Main {
       System.out.println();
     });
 
+
+    // Chain these
+    System.out.println("--------------------");
+    Optional<String> oldestFemaleAge = people.stream()
+            .filter(person -> person.getGender().equals(Gender.FEMALE))
+            .max(Comparator.comparing(Person::getAge))
+            .map(Person::getName);
+    oldestFemaleAge.ifPresent(System.out::println);
   }
   private static List<Person> getPeople() {
     return List.of(
